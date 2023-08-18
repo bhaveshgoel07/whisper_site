@@ -31,9 +31,11 @@ def transcribeTimeStamps(file, interval, model):
     dict = {}
     pos = 0
     try:
-        while(1):
+        while 1:
             result = model.transcribe(getAudioBuffer(file, pos, interval))
-            dict.update({ str(timedelta(seconds=(pos))) + " -> " + str(timedelta(seconds=(pos+interval))) : result["text"]})
+            dict[
+                f"{str(timedelta(seconds=pos))} -> {str(timedelta(seconds=pos + interval))}"
+            ] = result["text"]
             pos = pos + interval
     except:
         traceback.print_exc()
